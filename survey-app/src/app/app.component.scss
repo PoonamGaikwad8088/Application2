@@ -1,0 +1,32 @@
+::ng-deep {
+    .tab{
+    background: #f9e5c2f5;
+    border: 1px solid orange;
+    width: 80% !important;
+    margin: 10% auto;
+}
+.mat-form-field{
+    width: 98%;
+    margin: 15px auto;
+}
+.btn{
+    background-color: white;
+    border: 1px solid #000;
+}
+label{
+    padding: 35px;
+}
+.active-slide{
+    background: #f9e5c2f5;
+    border: 1px solid orange;
+  }
+  .btn:disabled {
+    border: 1px solid slategrey;
+    cursor: no-drop;
+}
+.button-grp{
+    position: relative;
+    bottom: 40px;
+    display: inline-flex;
+}
+}

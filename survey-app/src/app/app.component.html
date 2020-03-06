@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)" class="form">
+        
+        <div class="tab" >
+          <div class="button-grp">
+            <div *ngFor="let step of steps"><div class="btn" [ngClass]="{'active-slide' : (currentSlideNumber == 1)}">{{step.stepName}}</div></div>
+            <!-- <div class="btn" [ngClass]="{'active-slide' : (currentSlideNumber == 2)}">{{step.stepName}}</div> -->
+          </div>
+          <div *ngFor="let step of steps;">
+          <div class="Step1" [ngStyle]="(currentSlideNumber == index) ? {'display' : 'block'} : {'display' : 'none'}">
+            <div class="container" novalidate> 
+              
+                <div class="row">
+                  <div class="col-md-3">
+                    <label >{{step.Controls[0].Field}}</label>  
+                  </div>
+                  <div class="col-md-9">
+                    <mat-form-field class="form-element" *ngIf='step.Controls[0].Type == "text"'>
+                      <input matInput formControlName="name" class="form-control" type="{{surveyData.default[0].Controls[0].Type}}">
+                      <mat-error *ngIf="!name.valid && name.touched">
+                        {{ titleAlert }}
+                      </mat-error>
+                    </mat-form-field>
+                    <div class="form-element" *ngIf='step.Controls[0].Type == "checkbox"'>
+                      <mat-checkbox formControlName="books" value="1">{{step.Controls[0].Options[0]}}</mat-checkbox><br>
+                      <mat-checkbox formControlName="tv" value="2">TV</mat-checkbox><br>
+                      <mat-checkbox formControlName="videoGame" value="3">Video Games</mat-checkbox>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <label >{{step.Controls[1].Field}}</label>  
+                  </div>
+                  <div class="col-md-9">
+                    <mat-form-field class="form-element form-group">
+                      <input matInput formControlName="lname" class="form-control">
+                      <mat-error *ngIf="!lname.valid && lname.touched">
+                        {{ titleAlert }}
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3">
+                    <label >{{step.Controls[2].Field}}</label>  
+                  </div>
+                  <div class="col-md-9">
+                    <mat-form-field class="form-element">
+                      <textarea matInput matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5" formControlName="description"></textarea>
+                      <mat-error *ngIf="!formGroup.controls['description'].valid && formGroup.controls['description'].touched">
+                        Required field, must be between 5 and 10 characters.
+                      </mat-error>
+                    </mat-form-field>
+                  </div>
+                </div>
+                
+              
+                <div class="row">
+                  <div class="col-md-10"></div>
+                  <div class="col-md-2">
+                    <div class="form-element">{{steps.length - 1}}{{currentSlideNumber}}
+                      <button *ngIf='currentSlideNumber < (steps.length) && currentSlideNumber != (steps.length - 1)' mat-raised-button color="primary" class="button btn btn-default" tabindex="0" [disabled]="!formGroup.valid" (click)="goToNextSlide();">Next</button>
+                      <button *ngIf='currentSlideNumber == (steps.length - 1)' mat-raised-button color="primary" type="submit" class="button btn btn-default" [disabled]="!formGroup.valid">Submit</button>
+                    </div>
+                  </div>
+                </div>
+            
+              
+            </div>
+          </div> 
+        
+          
+
+          <!------------Second tab------------>
+          <!-- <div label="Step2" [ngStyle]="(currentSlideNumber == index) ? {'display' : 'block'} : {'display' : 'none'}"> 
+            <div class="container">
+              <div class="row">
+                <div class="col-md-3">
+                  <label >Interested In:</label>
+                </div>
+                <div class="col-md-9">
+                  <div class="form-element">
+                    <mat-checkbox formControlName="books" value="1">Books</mat-checkbox><br>
+                    <mat-checkbox formControlName="tv" value="2">TV</mat-checkbox><br>
+                    <mat-checkbox formControlName="videoGame" value="3">Video Games</mat-checkbox>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-10"></div>
+                <div class="col-md-2">
+                  <div class="form-element">
+                    <button mat-raised-button color="primary" type="submit" class="button btn btn-default" [disabled]="!formGroup.valid">Submit</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
